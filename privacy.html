@@ -11,9 +11,16 @@
     <header><nav class="shell"><a class="brand" href="index.html"><img src="assets/icon.svg" alt="">DualCue - 雙語字幕與學習講義下載</a><a href="index.html">首頁</a><a href="faq.html">常見問題</a></nav></header>
     <main class="page">
       <article>
-        <p class="eyebrow">LAST UPDATED 2026-07-23</p>
+        <p class="eyebrow">LAST UPDATED 2026-07-24</p>
         <h1>隱私政策</h1>
         <p>DualCue - 雙語字幕與學習講義下載以資料最小化與使用者主動操作為原則。首版不建立帳號、不投放廣告，也不包含使用行為分析 SDK。</p>
+        <h2>首次同意與處理範圍</h2>
+        <p>首次使用時，DualCue 會先在側欄說明資料處理方式並等待使用者按下「同意並開始使用」。同意前不讀取目前分頁的網址、標題、字幕或網頁文字，也不載入本機收藏。使用者可選擇不按下同意，此時學習功能不會啟動。</p>
+        <ul>
+          <li>網站內容：使用者啟動功能後，處理目前網頁文字、YouTube 字幕，或 Netflix／Disney+ 畫面上可見的字幕；無字幕轉錄另處理使用者主動擷取的分頁音訊。</li>
+          <li>瀏覽活動：為辨識來源、返回收藏頁面及控制播放器，處理目前頁面的網址、標題、平台、播放時間與使用者要求的重播／循環操作。</li>
+          <li>驗證資訊：使用者自行提供的 BYOK API Key 只保存在擴充功能的本機儲存空間，且不會公開顯示。</li>
+        </ul>
         <h2>本機保存的資料</h2>
         <ul>
           <li>設定及使用者自行提供的 API Key 儲存在 <code>chrome.storage.local</code>。</li>
@@ -33,8 +40,10 @@
         <p>Netflix／Disney+ 是首版核心影音 Adapter，因此擴充功能只宣告這兩個明確網域的固定權限；但只有使用者按下開始後才會讀取目前頁面可見字幕。一般網頁優先使用 Chrome 的 <code>activeTab</code>；固定側欄切換到新分頁時，只有使用者按下「允許目前網站」才會申請該單一網域。擴充功能不會在安裝時取得永久讀取所有網站的權限；密碼、表單、付款、可編輯及程式碼區域會被排除。</p>
         <h2>我們不做的事</h2>
         <ul><li>不出售個人資料。</li><li>不使用翻譯內容訓練模型。</li><li>不把 API Key 寫入日誌、下載、測試或原始碼。</li><li>不在沒有明確操作時呼叫付費 API。</li></ul>
+        <h2>Chrome Web Store Limited Use</h2>
+        <p>DualCue 對使用者資料的使用遵守 Chrome Web Store User Data Policy，包括 Limited Use requirements。資料只用於提供或改善雙語字幕、翻譯、收藏與學習講義這個單一學習用途；不會用於個人化廣告、信用評估或資料轉售，也不允許開發者人工閱覽使用者內容，法律要求或使用者為特定支援明確同意的情況除外。從 Google API 收到的資訊同樣遵守上述政策與限制。</p>
         <h2>聯絡方式</h2>
-        <p>隱私或支援問題可透過 <a href="https://github.com/Craighsieh">開發者 GitHub 頁面</a>聯絡。</p>
+        <p>常見問題與支援入口位於 <a href="faq.html">DualCue FAQ／支援頁</a>；其他問題可透過 <a href="https://github.com/Craighsieh">開發者 GitHub 頁面</a>聯絡。</p>
       </article>
     </main>
     <footer><div class="shell"><span>© 2026 DualCue - 雙語字幕與學習講義下載</span><div><a href="index.html">首頁</a><a href="faq.html">FAQ</a></div></div></footer>
