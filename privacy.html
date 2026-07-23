@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>隱私政策｜雙語學習助手</title>
+    <title>隱私政策｜DualCue - 雙語字幕與學習講義下載</title>
     <link rel="icon" href="assets/icon.svg">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header><nav class="shell"><a class="brand" href="index.html"><img src="assets/icon.svg" alt="">雙語學習助手</a><a href="index.html">首頁</a><a href="faq.html">常見問題</a></nav></header>
+    <header><nav class="shell"><a class="brand" href="index.html"><img src="assets/icon.svg" alt="">DualCue - 雙語字幕與學習講義下載</a><a href="index.html">首頁</a><a href="faq.html">常見問題</a></nav></header>
     <main class="page">
       <article>
         <p class="eyebrow">LAST UPDATED 2026-07-23</p>
         <h1>隱私政策</h1>
-        <p>雙語學習助手以資料最小化與使用者主動操作為原則。首版不建立帳號、不投放廣告，也不包含使用行為分析 SDK。</p>
+        <p>DualCue - 雙語字幕與學習講義下載以資料最小化與使用者主動操作為原則。首版不建立帳號、不投放廣告，也不包含使用行為分析 SDK。</p>
         <h2>本機保存的資料</h2>
         <ul>
           <li>設定及使用者自行提供的 API Key 儲存在 <code>chrome.storage.local</code>。</li>
@@ -25,18 +25,18 @@
           <li>Chrome 本機翻譯：文字在裝置上處理。</li>
           <li>YouTube 翻譯：字幕請求由瀏覽器送往 YouTube。</li>
           <li>Netflix／Disney+：只有使用者明確開始後，擴充功能才讀取目前分頁可見的字幕與 HTML5 播放時間；不讀取影音串流網址、DRM 或帳號資料。</li>
-          <li>BYOK 雲端服務：只有使用者選定 Provider 並按下開始後，待翻譯文字才會送往該 Provider。其處理方式受該服務的政策約束。</li>
+          <li>BYOK 雲端服務：只有使用者選定服務並按下開始後，要求處理的字幕、網頁文字或講義內容才會送往該服務。可選服務包括 OpenAI、Google Gemini、DeepSeek、Google Cloud Translation 與 Microsoft Translator；資料由使用者自己的 API 帳戶直接傳送，其處理方式受所選服務的政策約束。</li>
         </ul>
         <h2>音訊轉錄</h2>
         <p>只有使用者在沒有字幕的 YouTube 影片按下「開始生成 AI 字幕」後，擴充功能才會擷取目前分頁的音訊批次並傳送到使用者設定的 OpenAI 帳戶。停止、換片或關閉頁面時會結束擷取。</p>
         <h2>網頁存取</h2>
-        <p>一般網頁翻譯及 Netflix／Disney+ Adapter 使用 Chrome 的 <code>activeTab</code> 權限，只在使用者開啟側欄後注入目前分頁。擴充功能不要求永久讀取所有網站；密碼、表單、付款、可編輯及程式碼區域會被排除。</p>
+        <p>Netflix／Disney+ 是首版核心影音 Adapter，因此擴充功能只宣告這兩個明確網域的固定權限；但只有使用者按下開始後才會讀取目前頁面可見字幕。一般網頁優先使用 Chrome 的 <code>activeTab</code>；固定側欄切換到新分頁時，只有使用者按下「允許目前網站」才會申請該單一網域。擴充功能不會在安裝時取得永久讀取所有網站的權限；密碼、表單、付款、可編輯及程式碼區域會被排除。</p>
         <h2>我們不做的事</h2>
         <ul><li>不出售個人資料。</li><li>不使用翻譯內容訓練模型。</li><li>不把 API Key 寫入日誌、下載、測試或原始碼。</li><li>不在沒有明確操作時呼叫付費 API。</li></ul>
         <h2>聯絡方式</h2>
         <p>隱私或支援問題可透過 <a href="https://github.com/Craighsieh">開發者 GitHub 頁面</a>聯絡。</p>
       </article>
     </main>
-    <footer><div class="shell"><span>© 2026 雙語學習助手</span><div><a href="index.html">首頁</a><a href="faq.html">FAQ</a></div></div></footer>
+    <footer><div class="shell"><span>© 2026 DualCue - 雙語字幕與學習講義下載</span><div><a href="index.html">首頁</a><a href="faq.html">FAQ</a></div></div></footer>
   </body>
 </html>
