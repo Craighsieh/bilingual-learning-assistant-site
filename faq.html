@@ -14,15 +14,22 @@
         <p class="eyebrow">HELP</p>
         <h1>常見問題</h1>
         <div class="faq">
-          <details open><summary>為什麼最低需要 Chrome 138？</summary><p>Chrome 138 起提供穩定版 Translator API，讓英文到繁中／簡中的網頁翻譯可以在裝置上完成。</p></details>
+          <details open><summary>為什麼最低需要 Chrome 138？</summary><p>Chrome 138 起提供穩定版 Translator API，讓支援裝置上的英文到繁中、簡中、日文或韓文翻譯可在本機完成。實際可用語言仍由 Chrome 與裝置決定。</p></details>
+          <details><summary>介面語言和翻譯目標會互相影響嗎？</summary><p>不會。介面可選繁中、簡中、日文或韓文，翻譯目標也可獨立選擇；切換介面不會改寫翻譯目標或自動開始翻譯。</p></details>
+          <details><summary>術語表會同步或傳給所有翻譯服務嗎？</summary><p>不會。術語按目標語言只存在目前 Chrome，每種最多 200 條。只有你啟動 OpenAI、Gemini 或 DeepSeek 翻譯時，該目標語言的目前術語快照才會送往所選帳戶；YouTube、Chrome 本機、Google Cloud 與 Microsoft 路徑不會收到術語。</p></details>
           <details><summary>本機翻譯需要付費或 API Key 嗎？</summary><p>不需要。首次使用可能需要由 Chrome 下載對應語言包；若裝置不支援，可自行選擇 BYOK 雲端 Provider。</p></details>
           <details><summary>網頁翻譯會讀取密碼或表單嗎？</summary><p>不會。密碼、輸入欄位、表單、付款、可編輯、導覽與程式碼區域都會被排除。</p></details>
           <details><summary>為什麼切換分頁後要再次允許網站？</summary><p>Chrome 的 activeTab 臨時權限不會跟著固定側欄移動到新的分頁。DualCue 只會要求目前單一網站的權限，不會一次取得所有網站的永久讀取權。</p></details>
           <details><summary>為什麼 YouTube 字幕偶爾無法載入？</summary><p>YouTube timed-text 是網頁內部介面，可能因網址過期、流量限制或播放驗證而暫時失敗。重新整理影片通常能取得新的字幕網址。</p></details>
           <details><summary>Netflix／Disney+ 可以一次下載完整字幕嗎？</summary><p>首版不會預先取得完整字幕。只有你明確啟動後，畫面上實際出現的英文字幕才會逐句累積；這避免讀取串流網址、DRM 或平台內部 API。</p></details>
           <details><summary>串流影音需要先開啟什麼？</summary><p>請先在 Netflix 或 Disney+ 選擇英文字幕並播放影片，再從側欄「影音」按下開始。若平台更新字幕版面，可能需等待 Adapter 更新。</p></details>
-          <details><summary>收藏會同步到其他電腦嗎？</summary><p>首版不會。收藏只存在目前 Chrome 的 IndexedDB，可隨時匯出 TXT 或 CSV。</p></details>
+          <details><summary>收藏會同步到其他電腦嗎？</summary><p>不會。收藏只存在目前 Chrome 的 IndexedDB，可隨時匯出 TXT 或 CSV。</p></details>
+          <details><summary>可以修正單句翻譯嗎？</summary><p>可以。字幕、網頁段落與收藏可重新翻譯、手動編輯或恢復最近一次機器譯文。空白編輯會被拒絕；已收藏內容及後續 SRT、TXT、收藏匯出與 A4 講義都會使用目前譯文。</p></details>
+          <details><summary>記住網站偏好會自動翻譯嗎？</summary><p>不會。DualCue 只會按網站預填目標語言、引擎、主要文章／全部內容範圍與顯示樣式；仍須由你按下「翻譯網頁」，才會讀取可翻譯文字或呼叫指定服務。</p></details>
+          <details><summary>可以調整影音字幕位置和背景嗎？</summary><p>可以。YouTube、Netflix 與 Disney+ 共用字級、背景不透明度與垂直位置設定。DualCue 的串流譯文疊層不會隱藏或修改 Netflix／Disney+ 原生英文字幕。</p></details>
+          <details><summary>日文或韓文可以匯出哪些格式？</summary><p>完整譯文可匯出雙語 SRT、TXT、收藏 CSV 與 A4 講義；檔名和講義標題會包含正確的英文到目標語言資訊。任何一句譯文為空時，DualCue 會拒絕產生不完整的雙語檔案。</p></details>
           <details><summary>會自動產生 AI 費用嗎？</summary><p>不會。YouTube 翻譯與 Chrome 本機翻譯是免費預設；雲端翻譯及音訊轉錄都必須由使用者明確啟動。</p></details>
+          <details><summary>可以支持 DualCue 嗎？</summary><p>所有功能免費。若側欄底部顯示「支持 DualCue」，它只會以新分頁開啟 GitHub Sponsors；DualCue 不處理付款、不建立訂閱或功能解鎖，也不追蹤點擊。</p></details>
         </div>
       </article>
     </main>
