@@ -1,42 +1,10 @@
 <!doctype html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>常見問題｜DualCue - 雙語字幕與學習講義下載</title>
-    <link rel="icon" href="assets/icon.svg">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <header><nav class="shell"><a class="brand" href="index.html"><img src="assets/icon.svg" alt="">DualCue - 雙語字幕與學習講義下載</a><a href="index.html">首頁</a><a href="privacy.html">隱私政策</a></nav></header>
-    <main class="page">
-      <article>
-        <p class="eyebrow">HELP</p>
-        <h1>常見問題</h1>
-        <div class="faq">
-          <details open><summary>為什麼最低需要 Chrome 138？</summary><p>Chrome 138 起提供穩定版 Translator API，讓支援裝置上的英文到繁中、簡中、日文或韓文翻譯可在本機完成。實際可用語言仍由 Chrome 與裝置決定。</p></details>
-          <details><summary>介面語言和翻譯目標會互相影響嗎？</summary><p>不會。介面可選繁中、簡中、日文或韓文，翻譯目標也可獨立選擇；切換介面不會改寫翻譯目標或自動開始翻譯。</p></details>
-          <details><summary>術語表會同步或傳給所有翻譯服務嗎？</summary><p>不會。術語按目標語言只存在目前 Chrome，每種最多 200 條。只有你啟動 OpenAI、Gemini 或 DeepSeek 翻譯時，該目標語言的目前術語快照才會送往所選帳戶；YouTube、Chrome 本機、Google Cloud 與 Microsoft 路徑不會收到術語。</p></details>
-          <details><summary>本機翻譯需要付費或 API Key 嗎？</summary><p>不需要。首次使用可能要按一次「下載免費語言包並翻譯」，因 Chrome 要求模型下載由使用者互動開始。若裝置不支援，DualCue 會停止並顯示設定入口，不會自動改用 BYOK。</p></details>
-          <details><summary>一般使用者需要安裝本地大模型嗎？</summary><p>不需要。YouTube 免費翻譯與瀏覽器本機 Translator 已可直接使用。本地大模型適合重視隱私、想使用自訂模型，或本來就會在電腦上運行模型服務的人；它不一定較快，長影片也可能需要很久。</p></details>
-          <details><summary>如何使用自己的 Gemma、Qwen、Ollama、MTPLX 或 LM Studio？</summary><p>在 0.5.7 的「本地大模型（OpenAI Compatible）」選擇 Ollama、MTPLX 或 LM Studio 預設，DualCue 會填入 localhost 地址；沒有服務時可先從側欄開啟 <a href="https://ollama.com/download" target="_blank" rel="noreferrer">Ollama 官方下載</a>，安裝並下載至少一個模型。按「偵測服務」後，請自行確認模型，不會自動選第一個；再按「試譯 20 句並估時」，只把目前影片最前 20 個可用字幕 cue 送到該本機服務，做真實翻譯並推算整片時間，不會啟動完整翻譯或寫入完整工作 checkpoint。超過 15 分鐘會標示較慢，但不會自動改用雲端。服務只允許 localhost／127.0.0.1／::1，API Key 選填，DualCue 不會替你啟動模型伺服器。</p></details>
-          <details><summary>網頁翻譯會讀取密碼或表單嗎？</summary><p>不會。密碼、輸入欄位、表單、付款、可編輯、導覽與程式碼區域都會被排除。</p></details>
-          <details><summary>為什麼切換分頁後要再次允許網站？</summary><p>Chrome 的 activeTab 臨時權限不會跟著固定側欄移動到新的分頁。DualCue 只會要求目前單一網站的權限，不會一次取得所有網站的永久讀取權。</p></details>
-          <details><summary>為什麼 YouTube 字幕偶爾無法載入？</summary><p>YouTube timed-text 是網頁內部介面，可能因網址過期、流量限制或播放驗證而暫時失敗。重新整理影片通常能取得新的字幕網址。</p></details>
-          <details><summary>Bilibili 可以翻譯與下載哪些字幕？</summary><p>DualCue 優先使用英文人工 CC，其次是英文 AI 字幕，並可下載完整雙語 SRT、TXT 或 A4 講義。若影片只有畫面燒錄字幕、沒有文字字幕軌，Chrome／Edge 可由你明確啟動 OpenAI 英文音訊轉錄：先在側欄按「開始生成」，再讓影片分頁保持在最前方，於 30 秒內點工具列 DualCue 圖示，Chrome 授權後會自動開始，不用回側欄再按一次。預設為 <code>gpt-4o-transcribe</code>，也可在清單選 <code>gpt-4o-mini-transcribe</code> 或 <code>whisper-1</code>；Whisper 在這裡是 OpenAI API 模型，不是電腦本機模型。英文轉錄後優先由 Chrome 本機 Translator 免費翻譯；音訊授權不會額外啟動雲端文字翻譯。本機不可用時會保留英文，只有你之後明確選 AI 重譯才會發送新請求。這是重新轉錄，不是 OCR 擷取原字幕。DualCue 不繞過登入、會員或付費限制。</p></details>
-          <details><summary>Netflix／Disney+ 可以一次下載完整字幕嗎？</summary><p>不會預先取得完整字幕。接受新版同意後，只有播放時畫面實際出現的英文字幕才會逐句翻譯與累積；這避免讀取串流網址、DRM 或平台內部 API。</p></details>
-          <details><summary>串流影音需要先開啟什麼？</summary><p>請在 Netflix 或 Disney+ 自行選擇英文字幕並播放影片。DualCue 會在同意後自動翻譯，側欄不用保持開啟；DualCue 不會操作平台字幕選單。</p></details>
-          <details><summary>收藏會同步到其他電腦嗎？</summary><p>不會。收藏只存在目前 Chrome 的 IndexedDB，可隨時匯出 TXT 或 CSV。</p></details>
-          <details><summary>可以修正單句翻譯嗎？</summary><p>可以。字幕、網頁段落與收藏可重新翻譯、手動編輯或恢復最近一次機器譯文。空白編輯會被拒絕；已收藏內容及後續 SRT、TXT、收藏匯出與 A4 講義都會使用目前譯文。</p></details>
-          <details><summary>一般網頁需要按幾次？</summary><p>在文章頁按一次工具列 DualCue 圖示即可。DualCue 取得該頁臨時或單站權限後會自動走免費本機翻譯；被動切換分頁或載入網站偏好不會讀取文章，AI 也只會在你明確按下重新翻譯時使用。</p></details>
-          <details><summary>可以列印原文與網頁譯文嗎？</summary><p>可以。整頁翻譯完成後按「列印／另存 PDF」，Chrome 會列印網站英文原文與每段下方的譯文，並隱藏收藏、重譯、編輯與恢復等操作按鈕；列印不會重新翻譯或呼叫 Provider。</p></details>
-          <details><summary>可以調整影音字幕位置和背景嗎？</summary><p>可以。YouTube、Bilibili、Netflix 與 Disney+ 共用字級、背景不透明度與垂直位置設定。DualCue 的串流譯文疊層不會隱藏或修改 Netflix／Disney+ 原生英文字幕。</p></details>
-          <details><summary>日文或韓文可以匯出哪些格式？</summary><p>完整譯文可匯出雙語 SRT、TXT、收藏 CSV 與 A4 講義；檔名和講義標題會包含正確的英文到目標語言資訊。任何一句譯文為空時，DualCue 會拒絕產生不完整的雙語檔案。</p></details>
-          <details><summary>會自動產生 AI 費用嗎？</summary><p>不會。YouTube 翻譯與 Chrome 本機翻譯是免費預設；雲端翻譯及音訊轉錄都必須由使用者明確啟動。</p></details>
-          <details><summary>可以支持 DualCue 嗎？</summary><p>可以。所有功能免費；側欄底部的「支持 DualCue」只會以新分頁開啟 PayPal.Me 公開收款頁。該頁可能顯示 PayPal 驗證的收款帳戶姓名；DualCue 不處理付款、不建立訂閱或功能解鎖，也不追蹤點擊。</p></details>
-        </div>
-      </article>
-    </main>
-    <footer><div class="shell"><span>© 2026 DualCue - 雙語字幕與學習講義下載</span><div><a href="index.html">首頁</a><a href="privacy.html">隱私政策</a></div></div></footer>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>常見問題｜DualCue - AI 雙語字幕與學習講義下載</title><link rel="icon" href="assets/icon.svg"><link rel="stylesheet" href="styles.css"></head>
+  <body data-page="faq">
+    <header><nav class="shell"><a class="brand" href="index.html"><img src="assets/icon.svg" alt=""><span>DualCue - AI 雙語字幕與學習講義下載</span></a><a href="index.html" data-i18n="nav.reader">雙語閱讀器</a><a href="privacy.html" data-i18n="nav.privacy">隱私政策</a><label class="locale-picker"><span class="sr-only">Language</span><select id="ui-locale" aria-label="Interface language"><option value="zh-TW">繁體中文</option><option value="zh-CN">简体中文</option><option value="ja">日本語</option><option value="ko">한국어</option></select></label></nav></header>
+    <main class="page"><article><p class="eyebrow">HELP</p><div id="page-content"></div></article></main>
+    <footer><div class="shell"><span>© 2026 DualCue - AI 雙語字幕與學習講義下載</span><div><a href="index.html" data-i18n="nav.reader">雙語閱讀器</a><a href="privacy.html" data-i18n="nav.privacy">隱私政策</a></div></div></footer>
+    <script type="module" src="dist/pages.js"></script>
   </body>
 </html>
