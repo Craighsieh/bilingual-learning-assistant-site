@@ -83,6 +83,15 @@ h1 { max-width: 850px; margin: 0 auto; font-size: clamp(38px, 7vw, 68px); line-h
 .page h1 { margin: 0 0 12px; font-size: 42px; text-align: left; }
 .page h2 { margin-top: 32px; font-size: 24px; }
 .page p, .page li { color: #5f6f86; line-height: 1.75; }
+.exam-section { background: #f7faff; }
+.exam-grid .number { width: auto; padding: 0 10px; }
+.exam-link { display: inline-flex; margin-top: 12px; color: #1d4ed8; font-weight: 800; text-decoration: none; }
+.exam-link:hover { text-decoration: underline; }
+.exam-intro { font-size: 18px; }
+.exam-study-section { margin-top: 28px; padding-top: 1px; }
+.exam-study-section h2 { margin: 18px 0 6px; }
+.exam-disclaimer { margin: 32px 0 20px; padding: 16px 18px; border: 1px solid #f0c45d; border-radius: 12px; background: #fff8e6; color: #69480a !important; }
+.exam-cta { display: inline-flex; text-decoration: none; }
 .faq { display: grid; gap: 12px; }
 .faq details { padding: 17px 19px; border: 1px solid #dfe7f1; border-radius: 13px; background: #fff; }
 .faq summary { cursor: pointer; font-weight: 800; }

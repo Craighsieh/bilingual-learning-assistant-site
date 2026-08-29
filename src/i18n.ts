@@ -1,9 +1,9 @@
 export type UiLocale = 'zh-TW' | 'zh-CN' | 'ja' | 'ko';
 
 const zhTW = {
-  'nav.reader': '雙語閱讀器', 'nav.features': '功能', 'nav.faq': '常見問題', 'nav.privacy': '隱私政策',
-  'hero.title': '貼上英文內容網址，直接讀雙語版本',
-  'hero.body': '一般文章、YouTube 與 Bilibili 都能交給已安裝的 DualCue 擴充功能擷取；正文與字幕不經過 DualCue 伺服器，也不建立閱讀歷史。',
+  'nav.reader': '雙語閱讀器', 'nav.features': '功能', 'nav.exams': '考試學習', 'nav.faq': '常見問題', 'nav.privacy': '隱私政策',
+  'hero.title': '把英文影片與文章變成雙語考試學習材料',
+  'hero.body': '一鍵翻譯英文網頁、YouTube 與 Bilibili 字幕，輔助 TOEFL、IELTS、TOEIC 閱讀、聽力與單字練習；內容不經過 DualCue 伺服器，也不建立閱讀歷史。',
   'trust.local': '預設本機翻譯', 'trust.noAccount': '無帳號', 'trust.noHistory': '重新整理即清除', 'trust.noKey': '官網看不到 API Key',
   'reader.title': '公開雙語閱讀器', 'reader.body': '輸入公開 HTTPS 網址。來源頁開啟後請點一次 DualCue；文章會擷取可讀正文，YouTube／Bilibili 會重用頁面已提供的英文字幕。',
   'reader.urlLabel': '影片或文章網址', 'reader.import': '匯入內容',
@@ -28,14 +28,18 @@ const zhTW = {
   'features.pageTitle': '一般網頁一鍵翻譯', 'features.pageBody': '背景直接鎖定被點擊的分頁與網址，保留停止、完整還原、單句編輯、重譯與列印 PDF。',
   'features.videoTitle': 'YouTube／Bilibili 字幕', 'features.videoBody': '匯入頁面已提供的英文人工或 AI 字幕；沒有可讀字幕時會說明原因，不繞過登入或付費限制。',
   'features.privacyTitle': '不保存閱讀歷史', 'features.privacyBody': '閱讀器內容只在目前分頁記憶體；重新整理或關閉後清除，沒有帳號、分析 SDK 或雲端內容庫。',
+  'exams.title': '把真實英文內容用在考試練習', 'exams.body': 'DualCue 不取代官方教材或模擬考；它把你正在閱讀與觀看的英文內容整理成可對照、重播與匯出的補充練習。',
+  'exams.toeflTitle': 'TOEFL 托福', 'exams.toeflBody': '用學術文章與有文字字幕的講座素材練習閱讀、聽力、筆記與字彙。', 'exams.toeflLink': '查看托福使用方式',
+  'exams.ieltsTitle': 'IELTS 雅思', 'exams.ieltsBody': '用新聞、專題文章與訪談字幕練習資訊定位、同義改寫與主題字彙。', 'exams.ieltsLink': '查看雅思使用方式',
+  'exams.toeicTitle': 'TOEIC 多益', 'exams.toeicBody': '用職場、商業與旅遊情境內容練習快速理解與常見表達。', 'exams.toeicLink': '查看多益使用方式',
 } as const;
 
 type CopyKey = keyof typeof zhTW;
 type Dictionary = Record<CopyKey, string>;
 
 const zhCN: Dictionary = {
-  'nav.reader': '双语阅读器', 'nav.features': '功能', 'nav.faq': '常见问题', 'nav.privacy': '隐私政策',
-  'hero.title': '粘贴英文内容网址，直接阅读双语版本', 'hero.body': '普通文章、YouTube 与哔哩哔哩都可交给已安装的 DualCue 扩展获取；正文与字幕不经过 DualCue 服务器，也不建立阅读历史。',
+  'nav.reader': '双语阅读器', 'nav.features': '功能', 'nav.exams': '考试学习', 'nav.faq': '常见问题', 'nav.privacy': '隐私政策',
+  'hero.title': '把英文视频和文章变成双语考试学习材料', 'hero.body': '一键翻译英文网页、YouTube 与哔哩哔哩字幕，辅助 TOEFL、IELTS、TOEIC 阅读、听力和词汇练习；内容不经过 DualCue 服务器，也不建立阅读历史。',
   'trust.local': '默认本机翻译', 'trust.noAccount': '无需账号', 'trust.noHistory': '刷新即清除', 'trust.noKey': '官网看不到 API Key',
   'reader.title': '公开双语阅读器', 'reader.body': '输入公开 HTTPS 网址。来源页打开后请点击一次 DualCue；文章会获取可读正文，YouTube／哔哩哔哩会复用页面提供的英文字幕。',
   'reader.urlLabel': '视频或文章网址', 'reader.import': '导入内容', 'reader.supported': '支持普通 HTTPS 文章、YouTube、哔哩哔哩。Netflix、Disney+ 与其他视频平台请在原页使用 DualCue。',
@@ -53,11 +57,15 @@ const zhCN: Dictionary = {
   'features.pageTitle': '普通网页一键翻译', 'features.pageBody': '后台直接锁定被点击的标签页与网址，保留停止、完整恢复、单句编辑、重译与打印 PDF。',
   'features.videoTitle': 'YouTube／哔哩哔哩字幕', 'features.videoBody': '导入页面已提供的英文人工或 AI 字幕；没有可读字幕时会说明原因，不绕过登录或付费限制。',
   'features.privacyTitle': '不保存阅读历史', 'features.privacyBody': '阅读器内容只在当前标签页内存中；刷新或关闭后清除，不含账号、分析 SDK 或云端内容库。',
+  'exams.title': '把真实英文内容用于考试练习', 'exams.body': 'DualCue 不取代官方教材或模拟考试；它把你正在阅读和观看的英文内容整理成可对照、重播与导出的补充练习。',
+  'exams.toeflTitle': 'TOEFL 托福', 'exams.toeflBody': '使用学术文章和带文字字幕的讲座材料练习阅读、听力、笔记和词汇。', 'exams.toeflLink': '查看托福使用方式',
+  'exams.ieltsTitle': 'IELTS 雅思', 'exams.ieltsBody': '使用新闻、专题文章和访谈字幕练习信息定位、同义改写与主题词汇。', 'exams.ieltsLink': '查看雅思使用方式',
+  'exams.toeicTitle': 'TOEIC 多益', 'exams.toeicBody': '使用职场、商业和旅行情境内容练习快速理解与常见表达。', 'exams.toeicLink': '查看多益使用方式',
 };
 
 const ja: Dictionary = {
-  'nav.reader': 'バイリンガルリーダー', 'nav.features': '機能', 'nav.faq': 'よくある質問', 'nav.privacy': 'プライバシー',
-  'hero.title': '英語コンテンツの URL を貼り、すぐに対訳で読む', 'hero.body': '記事、YouTube、Bilibili はインストール済みの DualCue 拡張機能が取得します。本文や字幕は DualCue サーバーを経由せず、閲覧履歴も作りません。',
+  'nav.reader': 'バイリンガルリーダー', 'nav.features': '機能', 'nav.exams': '試験学習', 'nav.faq': 'よくある質問', 'nav.privacy': 'プライバシー',
+  'hero.title': '英語の動画や記事を試験向け対訳教材に', 'hero.body': '英語ウェブページ、YouTube、Bilibili 字幕をワンクリック翻訳し、TOEFL・IELTS・TOEIC の読解、聴解、語彙学習を補助します。内容は DualCue サーバーを経由せず、閲覧履歴も作りません。',
   'trust.local': '既定はローカル翻訳', 'trust.noAccount': 'アカウント不要', 'trust.noHistory': '再読み込みで消去', 'trust.noKey': 'サイトは API Key を取得しません',
   'reader.title': '公開バイリンガルリーダー', 'reader.body': '公開 HTTPS URL を入力します。元ページが開いたら DualCue を一度押してください。記事本文を取得し、YouTube／Bilibili はページ提供の英語字幕を再利用します。',
   'reader.urlLabel': '動画または記事の URL', 'reader.import': 'コンテンツを読み込む', 'reader.supported': 'HTTPS 記事、YouTube、Bilibili に対応。Netflix、Disney+ などは元ページで DualCue を使ってください。',
@@ -75,11 +83,15 @@ const ja: Dictionary = {
   'features.pageTitle': 'ウェブページをワンクリック翻訳', 'features.pageBody': 'クリックしたタブと URL を固定し、停止、完全復元、文ごとの編集、再翻訳、PDF 印刷を維持します。',
   'features.videoTitle': 'YouTube／Bilibili 字幕', 'features.videoBody': 'ページが提供する英語の人手／AI 字幕を読み込みます。読めない場合は理由を示し、ログインや有料制限を回避しません。',
   'features.privacyTitle': '閲覧履歴を保存しません', 'features.privacyBody': '内容は現在のタブのメモリだけに存在し、再読み込みや終了で消去。アカウント、分析 SDK、クラウド履歴はありません。',
+  'exams.title': '実際の英語コンテンツを試験学習に活用', 'exams.body': 'DualCue は公式教材や模擬試験の代わりではありません。読んでいる記事や動画を、対訳、再生、書き出しができる補助教材にします。',
+  'exams.toeflTitle': 'TOEFL', 'exams.toeflBody': '学術記事や文字字幕付き講義で読解、聴解、メモ、語彙を練習します。', 'exams.toeflLink': 'TOEFL での使い方',
+  'exams.ieltsTitle': 'IELTS', 'exams.ieltsBody': 'ニュース、特集記事、インタビュー字幕で情報検索、言い換え、テーマ語彙を練習します。', 'exams.ieltsLink': 'IELTS での使い方',
+  'exams.toeicTitle': 'TOEIC', 'exams.toeicBody': '仕事、ビジネス、旅行の場面で素早い理解と頻出表現を練習します。', 'exams.toeicLink': 'TOEIC での使い方',
 };
 
 const ko: Dictionary = {
-  'nav.reader': '이중 언어 리더', 'nav.features': '기능', 'nav.faq': '자주 묻는 질문', 'nav.privacy': '개인정보',
-  'hero.title': '영어 콘텐츠 URL을 붙여 넣고 이중 언어로 읽으세요', 'hero.body': '일반 기사, YouTube, Bilibili는 설치된 DualCue 확장 프로그램이 가져옵니다. 본문과 자막은 DualCue 서버를 거치지 않으며 읽기 기록도 만들지 않습니다.',
+  'nav.reader': '이중 언어 리더', 'nav.features': '기능', 'nav.exams': '시험 학습', 'nav.faq': '자주 묻는 질문', 'nav.privacy': '개인정보',
+  'hero.title': '영어 동영상과 기사를 시험용 이중 언어 자료로', 'hero.body': '영어 웹페이지, YouTube, Bilibili 자막을 원클릭 번역해 TOEFL·IELTS·TOEIC 읽기, 듣기, 어휘 학습을 보조합니다. 콘텐츠는 DualCue 서버를 거치지 않으며 읽기 기록도 만들지 않습니다.',
   'trust.local': '기본 로컬 번역', 'trust.noAccount': '계정 없음', 'trust.noHistory': '새로고침 시 삭제', 'trust.noKey': '사이트는 API Key를 볼 수 없음',
   'reader.title': '공개 이중 언어 리더', 'reader.body': '공개 HTTPS URL을 입력하세요. 원본 페이지가 열리면 DualCue를 한 번 누르세요. 기사는 읽을 수 있는 본문을 가져오고 YouTube／Bilibili는 페이지의 영어 자막을 재사용합니다.',
   'reader.urlLabel': '동영상 또는 기사 URL', 'reader.import': '콘텐츠 가져오기', 'reader.supported': '일반 HTTPS 기사, YouTube, Bilibili를 지원합니다. Netflix, Disney+ 등은 원본 페이지에서 DualCue를 사용하세요.',
@@ -97,6 +109,10 @@ const ko: Dictionary = {
   'features.pageTitle': '일반 웹페이지 원클릭 번역', 'features.pageBody': '클릭한 탭과 URL을 고정하고 중지, 전체 복원, 문장 편집, 재번역, PDF 인쇄를 유지합니다.',
   'features.videoTitle': 'YouTube／Bilibili 자막', 'features.videoBody': '페이지가 제공하는 영어 수동／AI 자막을 가져옵니다. 읽을 수 없으면 이유를 알리고 로그인이나 유료 제한을 우회하지 않습니다.',
   'features.privacyTitle': '읽기 기록을 저장하지 않음', 'features.privacyBody': '내용은 현재 탭 메모리에만 있으며 새로고침하거나 닫으면 삭제됩니다. 계정, 분석 SDK, 클라우드 기록이 없습니다.',
+  'exams.title': '실제 영어 콘텐츠를 시험 연습에 활용', 'exams.body': 'DualCue는 공식 교재나 모의시험을 대체하지 않습니다. 읽고 보는 영어 콘텐츠를 대조, 반복 재생, 내보내기가 가능한 보조 자료로 만듭니다.',
+  'exams.toeflTitle': 'TOEFL', 'exams.toeflBody': '학술 기사와 텍스트 자막이 있는 강의로 읽기, 듣기, 노트, 어휘를 연습합니다.', 'exams.toeflLink': 'TOEFL 활용법 보기',
+  'exams.ieltsTitle': 'IELTS', 'exams.ieltsBody': '뉴스, 특집 기사, 인터뷰 자막으로 정보 찾기, 바꿔 쓰기, 주제 어휘를 연습합니다.', 'exams.ieltsLink': 'IELTS 활용법 보기',
+  'exams.toeicTitle': 'TOEIC', 'exams.toeicBody': '직장, 비즈니스, 여행 상황에서 빠른 이해와 자주 쓰는 표현을 연습합니다.', 'exams.toeicLink': 'TOEIC 활용법 보기',
 };
 
 const dictionaries: Record<UiLocale, Dictionary> = { 'zh-TW': zhTW, 'zh-CN': zhCN, ja, ko };

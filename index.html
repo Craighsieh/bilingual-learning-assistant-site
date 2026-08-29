@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="DualCue 本機優先 AI 雙語字幕、網頁翻譯與公開雙語閱讀器。">
-    <title>DualCue - AI 雙語字幕與學習講義下載</title>
+    <meta name="description" content="DualCue 一鍵翻譯英文網頁與影片字幕，建立雙語對照與學習講義，適合 TOEFL、IELTS、TOEIC 閱讀、聽力與單字練習。">
+    <title>DualCue｜AI 雙語字幕、網頁翻譯與英語考試學習</title>
+    <link rel="canonical" href="https://craighsieh.github.io/bilingual-learning-assistant-site/">
     <link rel="icon" href="assets/icon.svg">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -14,6 +15,7 @@
         <a class="brand" href="index.html"><img src="assets/icon.svg" alt=""><span>DualCue - AI 雙語字幕與學習講義下載</span></a>
         <a href="#reader" data-i18n="nav.reader">雙語閱讀器</a>
         <a href="#features" data-i18n="nav.features">功能</a>
+        <a href="#exams" data-i18n="nav.exams">考試學習</a>
         <a href="faq.html" data-i18n="nav.faq">常見問題</a>
         <a href="privacy.html" data-i18n="nav.privacy">隱私政策</a>
         <label class="locale-picker"><span class="sr-only">Language</span><select id="ui-locale" aria-label="Interface language"><option value="zh-TW">繁體中文</option><option value="zh-CN">简体中文</option><option value="ja">日本語</option><option value="ko">한국어</option></select></label>
@@ -23,8 +25,8 @@
       <section class="hero">
         <div class="shell">
           <p class="eyebrow">LOCAL-FIRST BILINGUAL LEARNING</p>
-          <h1 data-i18n="hero.title">貼上英文內容網址，直接讀雙語版本</h1>
-          <p class="hero-copy" data-i18n="hero.body">一般文章、YouTube 與 Bilibili 都能交給已安裝的 DualCue 擴充功能擷取；正文與字幕不經過 DualCue 伺服器，也不建立閱讀歷史。</p>
+          <h1 data-i18n="hero.title">把英文影片與文章變成雙語考試學習材料</h1>
+          <p class="hero-copy" data-i18n="hero.body">一鍵翻譯英文網頁、YouTube 與 Bilibili 字幕，輔助 TOEFL、IELTS、TOEIC 閱讀、聽力與單字練習；內容不經過 DualCue 伺服器，也不建立閱讀歷史。</p>
           <div class="trust"><span data-i18n="trust.local">預設本機翻譯</span><span data-i18n="trust.noAccount">無帳號</span><span data-i18n="trust.noHistory">重新整理即清除</span><span data-i18n="trust.noKey">官網看不到 API Key</span></div>
         </div>
       </section>
@@ -82,6 +84,18 @@
             <article class="card"><span class="number">01</span><h3 data-i18n="features.pageTitle">一般網頁一鍵翻譯</h3><p data-i18n="features.pageBody">背景直接鎖定被點擊的分頁與網址，保留停止、完整還原、單句編輯、重譯與列印 PDF。</p></article>
             <article class="card"><span class="number">02</span><h3 data-i18n="features.videoTitle">YouTube／Bilibili 字幕</h3><p data-i18n="features.videoBody">匯入頁面已提供的英文人工或 AI 字幕；沒有可讀字幕時會說明原因，不繞過登入或付費限制。</p></article>
             <article class="card"><span class="number">03</span><h3 data-i18n="features.privacyTitle">不保存閱讀歷史</h3><p data-i18n="features.privacyBody">閱讀器內容只在目前分頁記憶體；重新整理或關閉後清除，沒有帳號、分析 SDK 或雲端內容庫。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section exam-section" id="exams">
+        <div class="shell">
+          <h2 data-i18n="exams.title">把真實英文內容用在考試練習</h2>
+          <p class="section-intro" data-i18n="exams.body">DualCue 不取代官方教材或模擬考；它把你正在閱讀與觀看的英文內容整理成可對照、重播與匯出的補充練習。</p>
+          <div class="grid exam-grid">
+            <article class="card"><span class="number">TOEFL</span><h3 data-i18n="exams.toeflTitle">TOEFL 托福</h3><p data-i18n="exams.toeflBody">用學術文章與有文字字幕的講座素材練習閱讀、聽力、筆記與字彙。</p><a class="exam-link" href="toefl-translation/" data-i18n="exams.toeflLink">查看托福使用方式</a></article>
+            <article class="card"><span class="number">IELTS</span><h3 data-i18n="exams.ieltsTitle">IELTS 雅思</h3><p data-i18n="exams.ieltsBody">用新聞、專題文章與訪談字幕練習資訊定位、同義改寫與主題字彙。</p><a class="exam-link" href="ielts-translation/" data-i18n="exams.ieltsLink">查看雅思使用方式</a></article>
+            <article class="card"><span class="number">TOEIC</span><h3 data-i18n="exams.toeicTitle">TOEIC 多益</h3><p data-i18n="exams.toeicBody">用職場、商業與旅遊情境內容練習快速理解與常見表達。</p><a class="exam-link" href="toeic-translation/" data-i18n="exams.toeicLink">查看多益使用方式</a></article>
           </div>
         </div>
       </section>

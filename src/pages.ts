@@ -1,4 +1,5 @@
 import { applyLocale, type UiLocale } from './i18n.js';
+import { examCopy, isExamSlug } from './exam-copy.js';
 
 interface FaqCopy {
   title: string;
@@ -148,7 +149,7 @@ function render(locale: UiLocale): void {
       details.append(summary, paragraph); list.append(details);
     });
     root.append(title, intro, list);
-  } else {
+  } else if (page === 'privacy') {
     const copy = privacy[locale];
     const title = document.createElement('h1'); title.textContent = copy.title;
     const intro = document.createElement('p'); intro.textContent = copy.intro;
@@ -158,6 +159,20 @@ function render(locale: UiLocale): void {
       const paragraph = document.createElement('p'); paragraph.textContent = body;
       root.append(h2, paragraph);
     }
+  } else if (isExamSlug(page)) {
+    const copy = examCopy[locale][page];
+    const title = document.createElement('h1'); title.textContent = copy.title;
+    const intro = document.createElement('p'); intro.className = 'exam-intro'; intro.textContent = copy.intro;
+    root.append(title, intro);
+    for (const [heading, body] of copy.sections) {
+      const section = document.createElement('section'); section.className = 'exam-study-section';
+      const h2 = document.createElement('h2'); h2.textContent = heading;
+      const paragraph = document.createElement('p'); paragraph.textContent = body;
+      section.append(h2, paragraph); root.append(section);
+    }
+    const disclaimer = document.createElement('p'); disclaimer.className = 'exam-disclaimer'; disclaimer.textContent = copy.disclaimer;
+    const cta = document.createElement('a'); cta.className = 'button primary exam-cta'; cta.href = '../index.html#reader'; cta.textContent = copy.cta;
+    root.append(disclaimer, cta);
   }
 }
 

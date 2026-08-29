@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://craighsieh.github.io/bilingual-learning-assistant-site/sitemap.xml

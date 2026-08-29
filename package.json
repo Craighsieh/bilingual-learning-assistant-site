@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node scripts/generate-exam-pages.mjs",
+    "generate:exam-pages": "node scripts/generate-exam-pages.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
