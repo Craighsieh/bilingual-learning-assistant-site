@@ -12,6 +12,20 @@ function page(path: string): string {
 }
 
 describe('exam-search landing pages', () => {
+  it('keeps the exam-learning navigation available on every public page', () => {
+    const publicPages = [
+      'index.html',
+      'faq.html',
+      'privacy.html',
+      ...exams.map((exam) => `${exam}-translation/index.html`),
+    ];
+
+    for (const publicPage of publicPages) {
+      expect(page(publicPage), publicPage).toContain('data-i18n="nav.exams"');
+      expect(page(publicPage), publicPage).toContain('class="exam-nav"');
+    }
+  });
+
   it('links the three exam guides from crawlable homepage content and metadata', () => {
     const homepage = page('index.html');
     expect(homepage).toContain('TOEFL');
