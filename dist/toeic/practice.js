@@ -1,5 +1,6 @@
 import { StudyAudio } from './audio.js';
 import { acquireEditor } from './editor.js';
+import { feedbackHref } from './feedback.js';
 import { answerQuestion, confirmGroup, createAttempt, scopeQuestions, submitAttempt, toggleFlag } from './session.js';
 import { action, element, formatTime, link, renderMaterial, renderQuestionGroup, renderResult } from './view.js';
 /** Coordinates persistence and presentation; session rules stay in the pure engine. */
@@ -167,6 +168,7 @@ export class PracticePage {
         this.questions.replaceChildren(renderQuestionGroup(group, this.attempt, this.review, this.readOnly, {
             answer: (id, choice) => this.perform((value) => answerQuestion(value, this.form, id, choice)),
             flag: (id) => this.perform((value) => toggleFlag(value, id)),
+            feedbackHref: (question) => feedbackHref(this.pageRoot, this.form.id, question.number),
             confirm: (groupId) => this.perform(async (value) => {
                 const next = confirmGroup(value, this.form, groupId);
                 await this.ensureReview();

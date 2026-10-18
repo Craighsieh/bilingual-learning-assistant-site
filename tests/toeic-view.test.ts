@@ -14,10 +14,30 @@ describe('browser question presentation', () => {
     const before = renderQuestionGroup(form.questions, draft, review, false, callbacks);
     expect(before.querySelectorAll('input[type=radio]')).toHaveLength(3);
     expect(before.querySelector('img')).toBeNull();
-    expect(before.textContent).toContain('<img src=x onerror=alert(1)>');
+    expect(before.textContent).not.toContain('<img src=x onerror=alert(1)>');
+    expect(before.textContent).not.toContain('A option');
+    expect(before.textContent).not.toContain('B option');
+    expect(before.textContent).not.toContain('C option');
+    expect([...before.querySelectorAll('label')].map((label) => label.textContent)).toEqual(['A', 'B', 'C']);
     expect(before.textContent).not.toContain('SECRET');
     const after = renderQuestionGroup(form.questions, { ...draft, status: 'submitted' }, review, false, callbacks);
+    expect(after.querySelector('img')).toBeNull();
+    expect(after.textContent).toContain('<img src=x onerror=alert(1)>');
+    expect(after.textContent).toContain('A option');
     expect(after.textContent).toContain('SECRET REASON');
     expect(after.querySelectorAll('input:disabled')).toHaveLength(3);
+
+    const practiceForm = { ...form, role: 'practice' as const };
+    const practice = createAttempt(practiceForm, 2);
+    const unconfirmed = renderQuestionGroup(form.questions, practice, review, false, callbacks);
+    expect(unconfirmed.textContent).not.toContain('A option');
+    const confirmed = renderQuestionGroup(form.questions, { ...practice, confirmedGroups: ['g'] }, review, false, callbacks);
+    expect(confirmed.textContent).toContain('A option');
+    expect(confirmed.textContent).toContain('SECRET AUDIO');
+
+    const part3Form = { ...form, questions: [{ ...form.questions[0]!, part: 3 }] };
+    const part3 = renderQuestionGroup(part3Form.questions, createAttempt(part3Form, 3), review, false, callbacks);
+    expect(part3.textContent).toContain('A option');
+    expect(part3.querySelector('img')).toBeNull();
   });
 });

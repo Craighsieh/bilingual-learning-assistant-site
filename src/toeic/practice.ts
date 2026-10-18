@@ -1,6 +1,7 @@
 import { StudyAudio } from './audio.js';
 import { StudyData } from './data.js';
 import { acquireEditor, type EditorLease } from './editor.js';
+import { feedbackHref } from './feedback.js';
 import { answerQuestion, confirmGroup, createAttempt, scopeQuestions, submitAttempt, toggleFlag } from './session.js';
 import type { StudyStore } from './store.js';
 import type { Attempt, ReviewFile, StudyForm, StudyQuestion } from './types.js';
@@ -139,6 +140,7 @@ export class PracticePage {
     this.questions.replaceChildren(renderQuestionGroup(group, this.attempt, this.review, this.readOnly, {
       answer: (id, choice) => this.perform((value) => answerQuestion(value, this.form, id, choice)),
       flag: (id) => this.perform((value) => toggleFlag(value, id)),
+      feedbackHref: (question) => feedbackHref(this.pageRoot, this.form.id, question.number),
       confirm: (groupId) => this.perform(async (value) => {
         const next = confirmGroup(value, this.form, groupId);
         await this.ensureReview(); return next;

@@ -47,7 +47,7 @@
     "Mock submit: 1/25 correct and 24 unanswered; explanation/transcript then available",
     "App icon copied from current App asset; source SHA in APP_ICON.json"
   ],
-  "physicalDevices": "NOT_RUN",
+  "physicalDevices": "NOT_RUN_OWNER_DEFERRED_TO_FOLLOWUP",
   "publicationRights": "OWNER_CONFIRMED_PUBLIC_REDISTRIBUTION",
   "publicDeployment": "NOT_RUN",
   "completeRelevantSuite": {
@@ -71,5 +71,7 @@
     "tests": 25,
     "executor": "Codex under recorded exception: both providers sandbox denied Vitest temp mkdir; no test body ran externally"
   },
-  "publicationRightsEvidence": "RIGHTS_OWNER_CONFIRMATION.json"
+  "publicationRightsEvidence": "RIGHTS_OWNER_CONFIRMATION.json",
+  "releaseAcceptanceScope": "ACCEPTANCE_SCOPE.json",
+  "verificationHistoryNote": "The checks above are retained historical implementation receipts. Final commit verification and additional feature checks are recorded separately; no claim of physical device acceptance."
 }

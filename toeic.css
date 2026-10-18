@@ -5,7 +5,7 @@
 .toeic-header nav { display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:76px; }
 .toeic-brand { display:flex; align-items:center; gap:12px; text-decoration:none; }.toeic-brand img { width:35px; height:35px; }.toeic-brand strong { font-size:21px; }.toeic-brand span { border-left:1px solid #ccd8eb; padding-left:14px; font-size:14px; color:var(--study-muted); }
 .toeic-nav { display:flex; gap:20px; }.toeic-nav a { display:inline-flex; align-items:center; min-height:44px; font-size:14px; font-weight:650; text-decoration:none; }
-.toeic-page :is(button,input,select,a):focus-visible { outline:3px solid #2563eb; outline-offset:3px; }
+.toeic-page :is(button,input,select,textarea,a):focus-visible { outline:3px solid #2563eb; outline-offset:3px; }
 .toeic-hero { padding:74px 0 40px; text-align:center; background:radial-gradient(ellipse at 18% 12%,#e4eaff,transparent 55%),radial-gradient(ellipse at 88% 10%,#e4f4f1,transparent 55%),#f6f8fc; }
 .toeic-hero h1 { font-size:clamp(36px,5.3vw,60px); line-height:1.2; letter-spacing:-.045em; max-width:none; }
 .toeic-lead { font-size:19px; color:var(--study-muted); line-height:1.8; margin:22px auto 26px; }.toeic-lead strong { color:#243f7a; }
@@ -41,3 +41,10 @@
 .toeic-header .toeic-brand { display:flex; }.toeic-app-identity { display:flex; align-items:center; justify-content:center; gap:13px; margin:0 auto 28px; text-align:left; color:#4d6585; font-size:12px; line-height:1.7; }.toeic-app-identity img,.app-main-icon,.teaser-app-icon,.result-app-icon { border-radius:22%; border:1px solid #d2dfed; box-shadow:0 5px 16px #1b3e6020; object-fit:contain; }.toeic-app-identity strong { font-size:15px; color:#243a60; }.app-main-icon { display:block; margin-bottom:25px; }.teaser-app-icon { display:block; margin-bottom:18px; }.result-app-icon { width:52px; height:52px; float:left; margin:3px 14px 10px 0; }
 
 .study-columns.single-column { grid-template-columns:minmax(0,840px); justify-content:center; }.form-card .explanation-reminder { color:#215d4d; font-size:13px; background:#eef8f3; padding:8px 10px; border-radius:7px; }
+
+.question-heading { flex-wrap:wrap; }.question-heading .question-number { margin-right:auto; }.question-feedback { font-size:12px; padding:7px 10px; }
+.toeic-nav { flex-wrap:wrap; }.toeic-footer a { display:inline-flex; align-items:center; min-height:44px; margin-right:20px; }
+.feedback-notice { margin:24px 0; padding:18px 20px; border:1px solid #cadcfc; border-radius:12px; background:#edf3ff; color:#29436a; }.feedback-notice p { margin:8px 0 0; font-size:14px; }
+.feedback-form { display:grid; gap:22px; margin:28px 0; }.feedback-form label { display:grid; align-content:start; gap:8px; font-weight:650; }.feedback-form .study-note { font-weight:400; margin:0; }.feedback-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.feedback-form :is(input,select,textarea) { box-sizing:border-box; width:100%; min-height:46px; padding:10px 12px; border:1px solid #bccde4; border-radius:9px; background:#fff; color:var(--study-ink); font:inherit; font-weight:400; }.feedback-form textarea { min-height:180px; resize:vertical; }.feedback-form .study-button { justify-self:start; max-width:100%; }
+@media(max-width:680px) { .toeic-header nav { flex-wrap:wrap; padding-block:8px; }.toeic-nav { gap:4px 12px; }.feedback-fields { grid-template-columns:1fr; } }

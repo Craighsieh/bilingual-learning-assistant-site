@@ -47,11 +47,13 @@ export function renderMaterial(question: StudyQuestion, asset: (relative: string
   return root;
 }
 
-interface QuestionActions { answer(id: string, choice: string): void; flag(id: string): void; confirm(groupId: string): void }
+interface QuestionActions { answer(id: string, choice: string): void; flag(id: string): void; confirm(groupId: string): void; feedbackHref?(question: StudyQuestion): string }
 export function renderQuestionGroup(questions: StudyQuestion[], attempt: Attempt, review: ReviewFile | null, readonly: boolean, actions: QuestionActions): HTMLElement {
   const root = element('div', 'question-group');
   for (const q of questions) {
     const visible = canReview(attempt, q);
+    // Part 2 is a listening response task; written prompts/options belong to review.
+    const listeningOnly = q.part === 2 && !visible;
     const key = visible ? review?.answers[q.id] : undefined;
     const card = element('section', 'question-card'); card.id = `question-${q.number}`;
     const top = element('div', 'question-heading'); top.append(element('span', 'question-number', `第 ${q.number} 題`));
@@ -60,15 +62,20 @@ export function renderQuestionGroup(questions: StudyQuestion[], attempt: Attempt
       const flag = action(flagged ? '已標記待複習' : '標記待複習', () => actions.flag(q.id), 'flag-button');
       flag.setAttribute('aria-pressed', String(flagged)); flag.disabled = readonly; flag.id = `flag-${q.number}`; top.append(flag);
     }
+    if (actions.feedbackHref) {
+      const report = link('回報這一題', actions.feedbackHref(q), 'study-button question-feedback');
+      report.setAttribute('aria-label', `回報第 ${q.number} 題`); report.target = '_blank'; report.rel = 'noopener noreferrer'; top.append(report);
+    }
     const fieldset = element('fieldset'); fieldset.disabled = readonly || visible;
-    const legend = element('legend', 'question-prompt', q.text || '請選擇最合適的答案。');
+    const legend = element('legend', 'question-prompt', listeningOnly ? '請聆聽題目與選項，選擇最合適的回應。' : q.text || '請選擇最合適的答案。');
     fieldset.append(legend);
     for (const choice of q.choices) {
       const label = element('label', 'answer-choice');
       const input = element('input'); input.type = 'radio'; input.name = `answer-${q.id}`; input.value = choice.key; input.id = `answer-${q.number}-${choice.key}`; input.checked = attempt.answers[q.id] === choice.key;
       input.addEventListener('change', () => actions.answer(q.id, choice.key));
       const badge = element('span', 'choice-key', choice.key); const copy = element('span', 'choice-copy', choice.text);
-      label.append(input, badge, copy);
+      label.append(input, badge);
+      if (!listeningOnly) label.append(copy);
       if (key && key.answer === choice.key) { label.classList.add('correct-choice'); label.append(element('span', 'choice-outcome', '正解')); }
       if (key && input.checked && key.answer !== choice.key) { label.classList.add('wrong-choice'); label.append(element('span', 'choice-outcome', '你的選擇')); }
       fieldset.append(label);

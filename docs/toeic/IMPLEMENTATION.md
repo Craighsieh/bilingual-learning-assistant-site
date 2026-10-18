@@ -1,6 +1,6 @@
 # 免費 TOEIC 專區 — approved 2026-10-18
 
-Source: owner-approved plan in the current Codex chat. Codex owns source/test changes; DeepSeek and Muse independently review the same frozen candidate. Preserve the actual dirty website and App trees. No commit/push/deployment of either source repository.
+Source: owner-approved plan in the current Codex chat. Codex owns source/test changes; DeepSeek and Muse independently review the same frozen candidate. Original source trees preserved; owner subsequently authorized scoped publication under ACCEPTANCE_SCOPE.json; use isolated release checkout only.
 
 ## Observable acceptance criteria
 
@@ -10,7 +10,8 @@ Source: owner-approved plan in the current Codex chat. Codex owns source/test ch
 - AC4: Results include correct/unanswered counts, per-Part correct/unanswered counts and overall active elapsed time, wrong-only review, explanations/transcripts and source skill learning focus, without uncalibrated TOEIC score claims.
 - AC5: Honest App intro: Toeic 多益考前站 / TOEIC PrepStation, two practices + ten mocks, five overlap the website; App plan unlocks unchanged. Default preparing state with no false download CTA. Verified configured App Store/TestFlight URL enables download and local QR. No progress sync promise.
 - AC6: Add only TOEIC entry links/section to current homepage and generated/localized TOEIC guide, dedicated privacy, canonical/sitemap and relative base-safe routes. Produce a scoped release overlay without unrelated Studio/cloud edits.
-- AC7: Focused red-green, relevant complete suite/type/build, provider Standards+Spec reviews, browser flows. Physical iPhone Safari/Android Chrome and explicit redistribution-rights documentation are separate release gates; do not mark them passed through desktop emulation or App acceptance.
+- AC7: Focused red-green, relevant complete suite/type/build, independent provider Standards+Spec reviews and browser flows. The owner explicitly approved release based on iOS Simulator Safari plus desktop mobile-viewport acceptance on 2026-10-18; physical iPhone Safari/Android Chrome remain NOT_RUN, deferred follow-up, never reported as passed. Owner redistribution-rights confirmation is recorded in RIGHTS_OWNER_CONFIRMATION.json. Deployment is authorized only after the accepted checks pass; see ACCEPTANCE_SCOPE.json.
+- AC8 (owner addition 2026-10-18): Add /toeic/feedback/ and discoverable navigation/per-question links. Invite reports about mistakes, explanations, audio/images or unclear questions. Include the selected public catalog form and displayed question number; optional category and user description. Use the existing developer GitHub support route to a prefilled issue, disclose account/public visibility, never auto-send or claim receipt. Do not collect email, upload answers/progress, or introduce backend/analytics; retain a continue-practicing path and mobile/keyboard accessibility.
 
 ## Implementation slices
 
