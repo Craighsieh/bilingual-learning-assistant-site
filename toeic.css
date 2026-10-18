@@ -48,3 +48,7 @@
 .feedback-form { display:grid; gap:22px; margin:28px 0; }.feedback-form label { display:grid; align-content:start; gap:8px; font-weight:650; }.feedback-form .study-note { font-weight:400; margin:0; }.feedback-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
 .feedback-form :is(input,select,textarea) { box-sizing:border-box; width:100%; min-height:46px; padding:10px 12px; border:1px solid #bccde4; border-radius:9px; background:#fff; color:var(--study-ink); font:inherit; font-weight:400; }.feedback-form textarea { min-height:180px; resize:vertical; }.feedback-form .study-button { justify-self:start; max-width:100%; }
 @media(max-width:680px) { .toeic-header nav { flex-wrap:wrap; padding-block:8px; }.toeic-nav { gap:4px 12px; }.feedback-fields { grid-template-columns:1fr; } }
+
+/* Submission status remains on-page; hidden controls must not inherit button display. */
+.feedback-form [hidden], .feedback-honey { display: none !important; }
+.feedback-status { overflow-wrap: anywhere; }
