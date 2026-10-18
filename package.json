@@ -4,14 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && node scripts/generate-exam-pages.mjs",
+    "build": "tsc && node scripts/generate-exam-pages.mjs && node scripts/generate-toeic-pages.mjs",
     "generate:exam-pages": "node scripts/generate-exam-pages.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "generate:toeic-pages": "node scripts/generate-toeic-pages.mjs",
+    "verify:toeic-content": "node scripts/verify-toeic-content.mjs"
   },
   "devDependencies": {
     "@types/chrome": "0.2.2",
+    "fake-indexeddb": "^6.2.6",
     "jsdom": "29.1.1",
+    "qrcode-generator": "^2.0.4",
     "typescript": "5.9.3",
     "vitest": "4.1.10"
   }

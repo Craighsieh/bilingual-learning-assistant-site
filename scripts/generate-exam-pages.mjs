@@ -42,6 +42,7 @@ function renderExamPage(slug) {
       <p class="exam-intro">${escapeHtml(copy.intro)}</p>
       ${sections}
       <p class="exam-disclaimer">${escapeHtml(copy.disclaimer)}</p>
+      ${slug === 'toeic' ? '<p><a class="button primary" href="../toeic/">免費 TOEIC 練習與模考 · 1,400 題</a></p>' : ''}
       <a class="button primary exam-cta" href="../index.html#reader">${escapeHtml(copy.cta)}</a>
     </article></main>
     <footer><div class="shell"><span>© 2026 DualCue</span><div>${relatedLinks}<a href="https://chromewebstore.google.com/detail/fknpamogppkmlmjpmaomoalbpekjpboc">Chrome Web Store</a></div></div></footer>

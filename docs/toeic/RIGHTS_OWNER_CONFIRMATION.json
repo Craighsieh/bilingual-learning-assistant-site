@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-18T03:56:29Z",
+  "status": "OWNER_CONFIRMED_PUBLIC_REDISTRIBUTION",
+  "evidenceType": "DIRECT_USER_ATTESTATION_IN_CURRENT_CONVERSATION",
+  "question": "發布準備需要補一項來源紀錄：App 的上架清單仍將「教材授權證明」列為待完成。這七套題目、音訊與圖片，是否都已取得可在免費公開網站再散布的權利？我會繼續完成實作與驗收，先不部署。",
+  "answerVerbatim": "全部皆可公開再散布",
+  "scope": {
+    "destination": "DualCue free public TOEIC practice website",
+    "contentVersion": "core12_a86da1a7b98fe311",
+    "formIds": [
+      "prac01",
+      "prac02",
+      "mock01",
+      "mock02",
+      "mock03",
+      "mock04",
+      "mock05"
+    ],
+    "questionCount": 1400,
+    "contentTypes": [
+      "questions and explanations",
+      "audio",
+      "images"
+    ],
+    "catalogSha256": "32f711aff8c17fd1af0297539e8701bb3b7465153f0d620e5a8bdec34da9e868",
+    "integrityManifestSha256": "fca38b6279015fc6b95e5a3bb8ce4eef07af41eb6ddb17db209d42196ee36349"
+  },
+  "rightsDocumentationBasis": "Owner explicit confirmation; not an independent third-party rights audit.",
+  "deploymentAuthorizedByThisReply": false
+}
