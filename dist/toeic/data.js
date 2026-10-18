@@ -1,4 +1,4 @@
-const formId = /^(prac0[12]|mock0[1-5])$/;
+import { isPublicFormId, PUBLIC_FORM_IDS } from './public-forms.js';
 function record(value) { return !!value && typeof value === 'object' && !Array.isArray(value); }
 function str(value) { return typeof value === 'string'; }
 export class StudyData {
@@ -33,17 +33,19 @@ export class StudyData {
     }
     async catalog() {
         const value = await this.json('catalog.json');
-        if (!record(value) || value.schemaVersion !== 1 || !str(value.contentVersion) || !Array.isArray(value.forms) || value.forms.length !== 7)
-            throw new Error('題庫目錄格式不符。');
+        if (!record(value) || value.schemaVersion !== 1 || !str(value.contentVersion) || value.totalQuestions !== 600 || !Array.isArray(value.forms) || value.forms.length !== PUBLIC_FORM_IDS.length)
+            throw new Error('題庫目錄格式不符，請重新整理後再試。');
+        const seen = new Set();
         for (const entry of value.forms) {
-            if (!record(entry) || !str(entry.id) || !formId.test(entry.id) || !str(entry.title) || !str(entry.description) || !['practice', 'mock'].includes(String(entry.role)) || entry.total !== 200 || !Array.isArray(entry.parts) || entry.parts.length !== 7)
+            if (!record(entry) || !str(entry.id) || !isPublicFormId(entry.id) || seen.has(entry.id) || !str(entry.title) || !str(entry.description) || entry.role !== (entry.id.startsWith('prac') ? 'practice' : 'mock') || entry.total !== 200 || !Array.isArray(entry.parts) || entry.parts.length !== 7)
                 throw new Error('套卷目錄不完整。');
+            seen.add(entry.id);
         }
         return value;
     }
     async form(id, version) {
-        if (!formId.test(id))
-            throw new Error('找不到這份套卷。');
+        if (!isPublicFormId(id))
+            throw new Error('這份套卷目前未開放，請回免費題庫選擇其他套卷。');
         const value = await this.json(`forms/${id}.json`);
         if (!record(value) || value.schemaVersion !== 1 || value.id !== id || value.contentVersion !== version || !str(value.title) || !['practice', 'mock'].includes(String(value.role)) || !Array.isArray(value.questions) || value.questions.length !== 200)
             throw new Error('題庫版本已更新，請回題庫首頁重新開始。');
@@ -62,6 +64,8 @@ export class StudyData {
         return value;
     }
     async review(form) {
+        if (!isPublicFormId(form.id))
+            throw new Error('這份套卷目前未開放，請回免費題庫選擇其他套卷。');
         const value = await this.json(`review/${form.id}.json`);
         if (!record(value) || value.schemaVersion !== 1 || value.formId !== form.id || value.contentVersion !== form.contentVersion || !record(value.answers))
             throw new Error('解析版本不符，請重試或返回題庫首頁。');

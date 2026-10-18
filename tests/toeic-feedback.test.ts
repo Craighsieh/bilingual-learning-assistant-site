@@ -9,7 +9,7 @@ import type { StudyForm } from '../src/toeic/types';
 
 const draft = { formId:'mock01', questionNumber:101, category:'wording', description:'  A & B <svg onload=alert(1)> 不清楚  ', contentVersion:'core12_test' };
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); document.body.replaceChildren(); });
-async function mounted(send = vi.fn().mockResolvedValue(undefined), query = 'form=mock04&question=101&attempt=PRIVATE&answer=SECRET') {
+async function mounted(send = vi.fn().mockResolvedValue(undefined), query = 'form=mock02&question=101&attempt=PRIVATE&answer=SECRET') {
   await generateToeicPages(process.cwd());
   document.body.innerHTML = new DOMParser().parseFromString(await readFile('toeic/feedback/index.html','utf8'),'text/html').body.innerHTML;
   const form = document.getElementById('feedback-form') as HTMLFormElement;
@@ -51,13 +51,19 @@ describe('anonymous feedback payload and delivery',()=>{
 });
 
 describe('on-page anonymous feedback and recovery',()=>{
+  it('does not prefill a withdrawn form or its question number',async()=>{
+    const x=await mounted(undefined,'form=mock04&question=101');
+    expect((document.getElementById('feedback-form-id') as HTMLSelectElement).value).toBe('');
+    expect((document.getElementById('feedback-question') as HTMLInputElement).value).toBe('');
+    expect(x.send).not.toHaveBeenCalled();
+  });
   it('prefills only catalog form/question, never opens study storage and waits for valid explicit submit',async()=>{
     const open=vi.fn();vi.stubGlobal('indexedDB',{open});const x=await mounted();
-    expect((document.getElementById('feedback-form-id') as HTMLSelectElement).value).toBe('mock04');expect((document.getElementById('feedback-question') as HTMLInputElement).value).toBe('101');
+    expect((document.getElementById('feedback-form-id') as HTMLSelectElement).value).toBe('mock02');expect((document.getElementById('feedback-question') as HTMLInputElement).value).toBe('101');
     expect(document.body.textContent).toContain('不需要註冊');expect(document.body.textContent).not.toContain('GitHub');
     x.dispatch();expect(x.send).not.toHaveBeenCalled();expect(document.getElementById('feedback-error')?.hidden).toBe(false);
     x.category.value='explanation';x.description.value=draft.description;x.dispatch();await vi.waitFor(()=>expect(x.send).toHaveBeenCalledOnce());
-    expect(x.send.mock.calls[0]![0]).toMatchObject({form:'模考 4（mock04）',question:'第 101 題'});expect(JSON.stringify(x.send.mock.calls[0]![0])).not.toMatch(/PRIVATE|SECRET|attempt|127\.0\.0\.1/);
+    expect(x.send.mock.calls[0]![0]).toMatchObject({form:'模考 2（mock02）',question:'第 101 題'});expect(JSON.stringify(x.send.mock.calls[0]![0])).not.toMatch(/PRIVATE|SECRET|attempt|127\.0\.0\.1/);
     expect(document.querySelector('svg')).toBeNull();expect(open).not.toHaveBeenCalled();
   });
   it('freezes pending fields and suppresses duplicates, then locks success until send another',async()=>{
@@ -80,8 +86,8 @@ describe('on-page anonymous feedback and recovery',()=>{
     expect(honey.autocomplete).toBe('off');expect(honey.tabIndex).toBe(-1);expect(honey.getAttribute('aria-hidden')).toBe('true');honey.value='autofilled';x.dispatch();expect(x.send).not.toHaveBeenCalled();expect(document.getElementById('feedback-error')?.hidden).toBe(false);
   });
   it('preserves correct per-question links using display numbers instead of legacy source IDs',()=>{
-    const form:StudyForm={schemaVersion:1,id:'mock04',title:'模考 4',role:'mock',contentVersion:'v1',questions:[101,102].map(number=>({id:`old-mock12-source-${number}`,number,part:3,groupId:'group',text:'Question',choices:[{key:'A',text:'Choice'}],audio:null,image:null,passage:null,documents:[],graphic:null,sourceHash:'hash'}))};
+    const form:StudyForm={schemaVersion:1,id:'mock02',title:'模考 2',role:'mock',contentVersion:'v1',questions:[101,102].map(number=>({id:`old-mock12-source-${number}`,number,part:3,groupId:'group',text:'Question',choices:[{key:'A',text:'Choice'}],audio:null,image:null,passage:null,documents:[],graphic:null,sourceHash:'hash'}))};
     const rendered=renderQuestionGroup(form.questions,createAttempt(form,3),null,false,{answer:()=>{},flag:()=>{},confirm:()=>{},feedbackHref:q=>feedbackHref(new URL('https://example.test/site/toeic/'),form.id,q.number)});
-    expect([...rendered.querySelectorAll<HTMLAnchorElement>('a')].map(link=>link.href)).toEqual(['https://example.test/site/toeic/feedback/?form=mock04&question=101','https://example.test/site/toeic/feedback/?form=mock04&question=102']);
+    expect([...rendered.querySelectorAll<HTMLAnchorElement>('a')].map(link=>link.href)).toEqual(['https://example.test/site/toeic/feedback/?form=mock02&question=101','https://example.test/site/toeic/feedback/?form=mock02&question=102']);
   });
 });

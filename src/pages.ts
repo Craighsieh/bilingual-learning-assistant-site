@@ -174,7 +174,7 @@ function render(locale: UiLocale): void {
     const cta = document.createElement('a'); cta.className = 'button primary exam-cta'; cta.href = '../index.html#reader'; cta.textContent = copy.cta;
     if (page === 'toeic') {
       const practice = document.createElement('a'); practice.className = 'button primary'; practice.href = '../toeic/';
-      practice.textContent = '免費 TOEIC 練習與模考 · 1,400 題（繁中）';
+      practice.textContent = '免費 TOEIC 練習與模考 · 600 題（繁中）';
       const entry = document.createElement('p'); entry.append(practice); root.append(entry);
     }
     root.append(disclaimer, cta);

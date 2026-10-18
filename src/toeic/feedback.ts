@@ -1,4 +1,5 @@
 import { sendFeedback } from './feedback-delivery.js';
+import { isPublicFormId } from './public-forms.js';
 
 const categories = {
   answer: '答案有疑問', explanation: '解題說明不清楚', audio: '聽力或逐字稿',
@@ -27,7 +28,7 @@ export interface FeedbackPayload {
 }
 
 function formTitle(formId: string): string {
-  if (!/^(prac0[12]|mock0[1-5])$/.test(formId)) throw new Error('請選擇要回饋的套卷。');
+  if (!isPublicFormId(formId)) throw new Error('請選擇要回饋的套卷。');
   return `${formId.startsWith('prac') ? '練習' : '模考'} ${Number(formId.slice(-2))}`;
 }
 
@@ -75,9 +76,11 @@ export function mountFeedbackForm(form: HTMLFormElement, params: URLSearchParams
   const controls = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input,select,textarea')];
   const setLocked = (locked: boolean): void => { controls.forEach(control => { control.disabled = locked; }); };
   const formParam = params.get('form') ?? '';
-  if ([...formChoice.options].some(option => option.value === formParam)) formChoice.value = formParam;
   const numberParam = params.get('question') ?? '';
-  if (/^\d{1,3}$/.test(numberParam) && Number(numberParam) >= 1 && Number(numberParam) <= 200) question.value = String(Number(numberParam));
+  if (isPublicFormId(formParam) && [...formChoice.options].some(option => option.value === formParam)) {
+    formChoice.value = formParam;
+    if (/^\d{1,3}$/.test(numberParam) && Number(numberParam) >= 1 && Number(numberParam) <= 200) question.value = String(Number(numberParam));
+  }
   let state: 'ready' | 'pending' | 'sent' = 'ready';
   let signature = ''; let reference = '';
   submit.disabled = false; form.noValidate = true;

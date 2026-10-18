@@ -15,12 +15,20 @@ beforeEach(() => {
 afterEach(() => { page?.dispose(); page = undefined; vi.restoreAllMocks(); });
 
 describe('practice page recovery', () => {
+  it.each(['prac02','mock03','mock04','mock05'])('rejects old %s attempt links before reading or saving progress',async id=>{
+    const form=vi.fn();const get=vi.fn();const save=vi.fn();
+    const data={catalog:async()=>({contentVersion:'v1',forms:[{id:'prac01'},{id:'mock01'},{id:'mock02'}]}),form} as unknown as StudyData;
+    const store={get,save} as unknown as Awaited<ReturnType<typeof openStudyStore>>;
+    page=new PracticePage(document.getElementById('toeic-root')!,data,store,new URL('/toeic/',location.href),new URLSearchParams(`form=${id}&attempt=retained-private-progress`));
+    await expect(page.start()).rejects.toThrow('未開放');
+    expect(form).not.toHaveBeenCalled();expect(get).not.toHaveBeenCalled();expect(save).not.toHaveBeenCalled();
+  });
   it('keeps a new answer visible when persistence fails and saves it on explicit retry', async () => {
     const form: StudyForm = { schemaVersion:1,id:'prac01',title:'練習 1',role:'practice',contentVersion:'v1',questions:[
       { id:'q',number:101,part:5,groupId:'g',text:'Choose a word.',choices:[{key:'A',text:'first'},{key:'B',text:'second'}],audio:null,image:null,passage:null,documents:[],graphic:null,sourceHash:'hash' },
     ] };
     const review: ReviewFile = {schemaVersion:1,formId:'prac01',contentVersion:'v1',answers:{q:{answer:'B',explanation:'Reason',transcript:'',skill:'word_form'}}};
-    const data = { catalog:async()=>({contentVersion:'v1'}),form:async()=>form,review:async()=>review,asset:()=>'' } as unknown as StudyData;
+    const data = { catalog:async()=>({contentVersion:'v1',forms:[{id:'prac01'}]}),form:async()=>form,review:async()=>review,asset:()=>'' } as unknown as StudyData;
     const store = await openStudyStore(new IDBFactory());
     const save = store.save.bind(store); let fail = false;
     vi.spyOn(store,'save').mockImplementation((...args) => { if(fail){fail=false;return Promise.reject(new Error('本機空間不足'));} return save(...args); });

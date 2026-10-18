@@ -187,7 +187,7 @@ function render(locale) {
             const practice = document.createElement('a');
             practice.className = 'button primary';
             practice.href = '../toeic/';
-            practice.textContent = '免費 TOEIC 練習與模考 · 1,400 題（繁中）';
+            practice.textContent = '免費 TOEIC 練習與模考 · 600 題（繁中）';
             const entry = document.createElement('p');
             entry.append(practice);
             root.append(entry);

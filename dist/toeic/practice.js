@@ -51,6 +51,8 @@ export class PracticePage {
     async start() {
         const catalog = await this.data.catalog();
         const id = this.params.get('form') ?? '';
+        if (!catalog.forms.some((entry) => entry.id === id))
+            throw new Error('這份套卷目前未開放，請回免費題庫選擇其他套卷。');
         this.form = await this.data.form(id, catalog.contentVersion);
         const partParam = this.params.get('part');
         const part = partParam === null ? null : Number(partParam);

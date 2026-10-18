@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
-import { readFile, writeFile, mkdir, copyFile, realpath, stat } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile, realpath, stat, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const PUBLIC_FORMS = ['prac01', 'prac02', 'mock01', 'mock02', 'mock03', 'mock04', 'mock05'];
+export const PUBLIC_FORMS = ['prac01', 'mock01', 'mock02'];
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const text = (value) => typeof value === 'string' ? value : '';
 const nullableText = (value) => text(value) || null;
@@ -53,6 +53,8 @@ export function toPublicForm(source, entry, media) {
 
 /** Only copies bytes already tied to the current accepted Core12 manifest. */
 export async function exportContent({ sourceRoot, mediaRoot, output }) {
+  await mkdir(output, { recursive: true });
+  if ((await readdir(output)).length) throw new Error('請使用空目錄輸出，避免保留已撤下的題庫。');
   const readJSON = async (name) => JSON.parse(await readFile(path.join(sourceRoot, name), 'utf8'));
   const catalog = await readJSON('backend-export/catalog.json');
   const accepted = await readJSON('backend-export/content-acceptance.json');

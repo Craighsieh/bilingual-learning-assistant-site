@@ -14,11 +14,14 @@ function attemptLink(attempt: Attempt): string {
 
 async function catalogPage(target: HTMLElement): Promise<void> {
   const [catalog, store] = await Promise.all([data.catalog(), openStudyStore()]);
-  const all = await store.list(); const attempts = all.filter((a) => a.contentVersion === catalog.contentVersion);
+  const all = await store.list();
+  const offered = new Set(catalog.forms.map((form) => form.id));
+  const attempts = all.filter((a) => a.contentVersion === catalog.contentVersion && offered.has(a.formId));
   const old = all.some((a) => a.contentVersion !== catalog.contentVersion);
   const intro = element('div', 'catalog-intro');
   if (!store.persistent) intro.append(element('p', 'storage-warning', '本次進度無法保存：目前使用分頁記憶體，重新整理或關閉後會清除。'));
   if (old) intro.append(element('p', 'storage-warning', '題庫內容已更新，舊版進度不會套用至新版題目。可從下方開始新版練習。'));
+  if (all.some((a) => a.contentVersion === catalog.contentVersion && !offered.has(a.formId))) intro.append(element('p', 'study-note', '免費題庫目前開放練習 1、模考 1 和 2。其他套卷的本機進度仍保留，但暫不提供續答。'));
   const latest = attempts.find((a) => a.status === 'draft');
   if (latest) {
     const entry = catalog.forms.find((form) => form.id === latest.formId);
@@ -26,7 +29,7 @@ async function catalogPage(target: HTMLElement): Promise<void> {
   }
   target.replaceChildren(intro);
   for (const role of ['practice', 'mock'] as const) {
-    const section = element('section', 'catalog-section'); section.append(element('h2', '', role === 'practice' ? '兩套完整練習，先建立手感。' : '五套完整模考，照自己的步調練。'));
+    const section = element('section', 'catalog-section'); section.append(element('h2', '', role === 'practice' ? '一套完整練習，先建立手感。' : '兩套完整模考，照自己的步調練。'));
     const grid = element('div', 'form-grid');
     for (const form of catalog.forms.filter((f) => f.role === role)) {
       const formAttempts = attempts.filter((a) => a.formId === form.id);
